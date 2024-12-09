@@ -1,10 +1,16 @@
-import { Button } from "@/components/ui/button";
+import ProductsView from "@/components/ProductsView";
+import { getAllCategories } from "@/sanity/lib/products/getAllCategories";
+import { getAllProducts } from "@/sanity/lib/products/getAllProducts";
 
-export default function Home() {
+export default async function Home() {
+  const [products, categories] = await Promise.all([
+    getAllProducts(),
+    getAllCategories(),
+  ]);
+
   return (
     <div>
-      <h1>Hello World</h1>
-      <Button>Test btn</Button>
+      <ProductsView products={products} categories={categories} />
     </div>
   );
 }

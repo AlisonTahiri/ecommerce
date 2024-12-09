@@ -13,7 +13,6 @@ import { PackageIcon, TrolleyIcon } from "@sanity/icons";
 
 function Header() {
   const { user } = useUser();
-  console.log({ user });
 
   // Add this feature later
 
