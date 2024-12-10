@@ -13,7 +13,11 @@ export default async function Home() {
     <div>
       <BlackFridayBanner />
       <div className="flex flex-col items-center min-h-screen">
-        <ProductsView products={products} categories={categories} />
+        <ProductsView
+          products={products}
+          categories={categories}
+          currentCategorySlug=""
+        />
       </div>
     </div>
   );
