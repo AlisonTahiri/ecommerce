@@ -10,9 +10,13 @@ import {
 import Link from "next/link";
 import Form from "next/form";
 import { PackageIcon, TrolleyIcon } from "@sanity/icons";
+import { useSearchParams } from "next/navigation";
 
 function Header() {
   const { user } = useUser();
+  const searchParams = useSearchParams();
+
+  const query = searchParams.get("query");
 
   // Add this feature later
 
@@ -44,6 +48,7 @@ function Header() {
             name="query"
             placeholder="Search for products"
             className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-full max-w-4xl px-4 py-2 text-gray-800 bg-gray-100 border rounded"
+            defaultValue={query ?? ""}
           />
         </Form>
         {/* My basket part */}
