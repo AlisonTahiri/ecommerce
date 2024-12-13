@@ -12,9 +12,15 @@ import Form from "next/form";
 import { PackageIcon, TrolleyIcon } from "@sanity/icons";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import useBasketStore from "@/app/(store)/store";
 
 function Header() {
   const { user } = useUser();
+
+  const itemCount = useBasketStore((state) =>
+    state.items.reduce((total, item) => total + item.quantity, 0)
+  );
+
   const searchParams = useSearchParams();
 
   const query = searchParams.get("query");
@@ -66,7 +72,9 @@ function Header() {
             className="sm:justify-start sm:flex-none hover:bg-blue-700 relative flex items-center justify-center flex-1 px-4 py-2 space-x-2 font-bold text-white bg-blue-500 rounded"
           >
             <TrolleyIcon className="w-6 h-6" />
-            {/* TODO: Span item count once global state is implemented */}
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              {itemCount}
+            </span>
             <span>My Basket</span>
           </Link>
 
