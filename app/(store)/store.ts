@@ -40,7 +40,14 @@ const useBasketStore = create<BasketState>()(
       },
       removeItem: (productId) => {
         const items = get().items;
-        set({ items: items.filter((item) => item.product._id !== productId) });
+
+        set({
+          items: items.map((item) =>
+            item.product._id === productId
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          ),
+        });
       },
       clearBasket: () => {
         set({ items: [] });

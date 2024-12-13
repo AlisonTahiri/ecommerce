@@ -1,3 +1,4 @@
+import AddToBasketButton from "@/components/AddToBasket";
 import { imageUrl } from "@/lib/imageUrl";
 import { cn } from "@/lib/utils";
 import { getProductBySlug } from "@/sanity/lib/products/getProductBySlug";
@@ -52,6 +53,9 @@ async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
             {Array.isArray(product.description) && (
               <PortableText value={product.description} />
             )}
+          </div>
+          <div className="mt-6">
+            <AddToBasketButton product={product} disabled={isOutOfStock} />
           </div>
         </div>
       </div>
