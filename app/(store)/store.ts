@@ -41,13 +41,19 @@ const useBasketStore = create<BasketState>()(
       removeItem: (productId) => {
         const items = get().items;
 
-        set({
-          items: items.map((item) =>
-            item.product._id === productId
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
-          ),
-        });
+        // If the quantity of the target item is greater than 1, decrement the quantity by 1. Else remove item from array.
+        const newItems = items.reduce((acc, item) => {
+          if (item.product._id === productId) {
+            if (item.quantity > 1) {
+              acc.push({ ...item, quantity: item.quantity - 1 });
+            }
+          } else {
+            acc.push(item);
+          }
+          return acc;
+        }, [] as BasketItem[]);
+
+        set({ items: newItems });
       },
       clearBasket: () => {
         set({ items: [] });
