@@ -62,7 +62,7 @@ export const blockContentType = defineType({
     // as a block type.
     defineArrayMember({
       type: 'image',
-      icon: ImageIcon,
+      icon: () => <ImageIcon />,
       options: {hotspot: true},
       fields: [
         {

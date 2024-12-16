@@ -1,7 +1,7 @@
 import { formatCurrency } from "@/lib/formatCurrency";
 import { imageUrl } from "@/lib/imageUrl";
 import { cn } from "@/lib/utils";
-import { MY_ORDERS_QUERYResult, Order } from "@/sanity.types";
+import { MY_ORDERS_QUERYResult } from "@/sanity.types";
 import Image from "next/image";
 import React from "react";
 

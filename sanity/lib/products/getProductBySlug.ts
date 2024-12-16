@@ -12,6 +12,8 @@ export const getProductBySlug = async (slug: string) => {
       params: {
         slug,
       },
+      perspective: "published",
+      stega: false,
     });
     return product.data || null;
   } catch (error) {

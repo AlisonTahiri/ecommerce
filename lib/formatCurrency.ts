@@ -5,7 +5,7 @@ export function formatCurrency(amount: number, currencyCode: string = "USD") {
       currency: currencyCode.toUpperCase(),
     }).format(amount);
   } catch (error) {
-    console.error("Invalid currency code: ", currencyCode);
+    console.error("Error formatting currency: ", error);
     return `${currencyCode.toUpperCase()} ${amount.toFixed(2)}`;
   }
 }

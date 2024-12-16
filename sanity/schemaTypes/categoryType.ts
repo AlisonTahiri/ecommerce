@@ -1,10 +1,12 @@
 import { TagIcon } from "@sanity/icons";
+import { ReactNode } from "react";
 import { defineField, defineType } from "sanity";
 
 export const categoryType = defineType({
   name: "category",
   title: "Category",
   type: "document",
+  // @ts-ignore
   icon: TagIcon,
   fields: [
     defineField({

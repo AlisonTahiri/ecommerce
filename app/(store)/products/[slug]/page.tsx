@@ -1,6 +1,8 @@
 import AddToBasketButton from "@/components/AddToBasket";
 import { imageUrl } from "@/lib/imageUrl";
 import { cn } from "@/lib/utils";
+import { ALL_PRODUCTS_QUERYResult } from "@/sanity.types";
+import { client } from "@/sanity/lib/client";
 import { getProductBySlug } from "@/sanity/lib/products/getProductBySlug";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
@@ -64,3 +66,17 @@ async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
 }
 
 export default ProductPage;
+
+export async function generateStaticParams() {
+  // Fetch vie Sanity client vs sanityFetch to avoid draft mode error
+  const query = `
+   *[_type == "product"]
+   { slug }
+  `;
+
+  const products = await client.fetch(query);
+
+  return products.map((product: ALL_PRODUCTS_QUERYResult[number]) => ({
+    slug: product.slug?.current,
+  }));
+}

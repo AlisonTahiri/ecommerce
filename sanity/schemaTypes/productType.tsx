@@ -5,6 +5,8 @@ export const productType = defineType({
   name: "product",
   title: "Product",
   type: "document",
+
+  // @ts-ignore
   icon: TrolleyIcon,
   fields: [
     defineField({
